@@ -1,5 +1,7 @@
 # CV Builder
 
+DEMO: http://cv.lilmod.pro
+
 - Angular 8+
 - NgRX
 - Lazy Loading
