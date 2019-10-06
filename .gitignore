@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-*/environments/*
+*/environments_real/*
 /tmp
 /firebase
 ./idea
