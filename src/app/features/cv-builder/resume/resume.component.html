@@ -1,0 +1,95 @@
+<div class="preview" id="cv">
+  <div class="content">
+    <div class="contacts">
+      <div class="avatar">
+        <img
+          src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png">
+      </div>
+
+      <h2>Contacts</h2>
+      <div class="contacts">
+        <div><i class="pi pi-home"></i> {{cv.value.contacts.country}},
+          {{cv.value.contacts.city}}</div>
+        <div><i class="pi pi-envelope"></i> <a
+            href="mailto:{{cv.value.contacts.email}}" target="_blank">
+            {{cv.value.contacts.email}}</a>
+        </div>
+        <div><i class="pi pi-comment"></i> {{cv.value.contacts.skype}}</div>
+        <div style="white-space: nowrap"><a
+            href="{{cv.value.contacts.linkedin}}"><i
+              class="pi pi-external-link"></i> {{cv.value.contacts.linkedin}}
+          </a></div>
+      </div>
+      <div class="hr"></div>
+      <h2>Skills</h2>
+      <span class="skill" *ngFor="let skill of cv.value.skills">
+        {{skill}}
+      </span>
+
+      <div class="hr"></div>
+      <h2>Languages</h2>
+      <div *ngFor="let l of cv.value.languages" class="language">
+        <div class="lname">{{l.name}}</div>
+        <div class="lprof" [appLevelBar]="l.proficiency"></div>
+      </div>
+
+      <div class="hr"></div>
+      <h2>Interests</h2>
+      <span class="interest"
+        *ngFor="let inter of cv.value.interests; let i = index"
+        class="interests">
+        {{i!==0?'-':''}} <span>{{inter}}</span>
+      </span>
+    </div>
+    <div class="textContent">
+      <div class="headerabout">
+        <h1>{{cv.value.header.firstname}} {{cv.value.header.lastname}}</h1>
+        <div>{{cv.value.header.position}} with {{cv.value.header.experience}}
+          years experience
+        </div>
+      </div>
+
+      <div>
+        <h2>Experience Summary</h2>
+        <div *ngFor="let exp of cv.value.experience">
+          ✓ {{exp}}
+        </div>
+      </div>
+
+      <div class="prof-exp">
+        <h2>Professional Experience</h2>
+        <div *ngFor="let pro of cv.value.professional">
+          <div>
+            <h3>{{pro.position}}</h3>
+          </div>
+          <strong>{{pro.company}}</strong>
+          {{pro.start_date | date}}...{{pro.end_date | date}}
+          <div>Direction: {{pro.direction}}</div>
+          <div>Project: {{pro.project}}</div>
+          <div>Responsibility:
+            <div *ngFor="let res of pro.responsibilities">
+              - {{res}}
+            </div>
+          </div><br />
+        </div>
+      </div>
+
+      <div>
+        <h2>Education</h2>
+        <div *ngFor="let edu of cv.value.education; let i = index;">
+          #{{i+1}}: {{edu.name}},
+          {{edu.edu_start_date | date}}...{{edu.edu_end_date | date}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-confirmDialog [transitionOptions]="'100ms'" [closeOnEscape]="true" #cd
+  header="Confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" label="No"
+      (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Yes"
+      (click)="cd.accept()" class="ui-button-danger"></button>
+  </p-footer>
+</p-confirmDialog>

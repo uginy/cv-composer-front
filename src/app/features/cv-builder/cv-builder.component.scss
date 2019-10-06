@@ -1,0 +1,23 @@
+mat-sidenav {
+  width: 200px;
+}
+
+mat-drawer {
+  width: 30%;
+  min-width: 500px;
+}
+
+.mat-drawer-side {
+  border-right: none;
+}
+
+.resume-container,
+.mat-drawer-container {
+  background-color: none !important;
+}
+
+.nav-cv {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.3rem 0.5rem 0;
+}

@@ -1,0 +1,17 @@
+<div class="navbar">
+  <p-menubar [model]="items">
+    <div *ngIf="currentUser; else ablock">
+      <button pButton label="Logout" icon="pi pi-sign-out"
+        class="ui-button-danger" (click)="logout()"></button>
+      &nbsp;<button pButton class="ui-button-warning" label="Admin"
+        icon="pi pi-user" [routerLink]="['/auth/admin']"
+        *ngIf="isAdmin"></button>
+    </div>
+    <ng-template #ablock>
+      <div>
+        <button pButton label="Login" icon="pi pi-sign-in"
+          class="ui-button-success" [routerLink]="['/auth/login']"></button>
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>

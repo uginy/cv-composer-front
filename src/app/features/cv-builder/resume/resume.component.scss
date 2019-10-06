@@ -1,0 +1,103 @@
+:host {
+  .preview {
+    .content {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid silver;
+      border-bottom: 0;
+      height: 100%;
+
+      .contacts {
+        flex: 1;
+        background: rgb(247, 253, 239);
+        padding: 1rem;
+        height: 100%;
+
+        h2 {
+          margin: 0.7rem 0 0.4rem 0;
+        }
+        .avatar {
+          display: block;
+          width: 150px;
+          height: 150px;
+          border: 1px solid silver;
+          border-radius: 50%;
+          margin: 0 auto;
+          margin-bottom: 2rem;
+
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .interests {
+          font-weight: bold;
+          span {
+            text-decoration: underline;
+          }
+        }
+        .language {
+          display: flex;
+          margin-bottom: 1px;
+
+          .lname {
+            flex: 1;
+          }
+
+          .lprof {
+            flex: 3;
+            display: flex;
+            justify-content: flex-end;
+
+            div {
+              display: inline-block;
+              width: 20px;
+              min-width: 20px;
+              background: #b8d4c7;
+              margin-right: 1px;
+            }
+          }
+        }
+
+        .skill {
+          margin-top: 2px;
+          display: inline-block;
+          border: 1px solid rgb(223, 223, 223);
+          border-radius: 3px;
+          padding: 2px 5px;
+          font-weight: bold;
+          background-color: #fff;
+
+          &:not(:last-child) {
+            margin-right: 2px;
+          }
+        }
+      }
+
+      .textContent {
+        flex: 5;
+
+        & > * {
+          padding: 1rem;
+        }
+
+        // & > *:not(:last-child) {
+        //   border-bottom: 1px solid #ddd;
+        // }
+        .prof-exp h3 {
+          background-color: #ddd;
+          padding: 3px 5px;
+          display: inline-block;
+        }
+        .headerabout {
+          background: #cddeb6;
+        }
+      }
+    }
+  }
+}

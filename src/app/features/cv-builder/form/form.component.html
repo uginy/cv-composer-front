@@ -1,0 +1,236 @@
+<div class="form">
+  <form [formGroup]="cv" novalidate (ngSubmit)="onSubmit(cv.value)">
+    <p-tabView orientation="left" [activeIndex]="activeIndex" class="tabview">
+      <p-tabPanel header="Header">
+        <!-- Header form group -->
+        <div class="row" formGroupName="header">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="FirstName" formControlName="firstname"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last Name" formControlName="lastname"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Position" formControlName="position"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Experience" type="number" min="0"
+              formControlName="experience" required>
+          </mat-form-field>
+          <p-message severity="error" text="Firstname is required" *ngIf="!cv.get('header').get('firstname').valid
+              && cv.get('header').get('firstname').dirty">
+          </p-message>
+          <p-message severity="error" text="Lastname is required" *ngIf="!cv.get('header').get('lastname').valid
+              && cv.get('header').get('lastname').dirty">
+          </p-message>
+          <p-message severity="error" text="Position is required" *ngIf="!cv.get('header').get('position').valid
+              && cv.get('header').get('position').dirty">
+          </p-message>
+          <p-message severity="error" text="Experience years are required"
+            *ngIf="!cv.get('header').get('experience').valid
+              && cv.get('header').get('experience').dirty">
+          </p-message>
+        </div>
+        <!-- Header form group -->
+      </p-tabPanel>
+      <p-tabPanel header="Contacts">
+        <!-- Contacts form group -->
+        <div class="row" formGroupName="contacts">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Country" formControlName="country"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="City" formControlName="city" required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input type="email" matInput placeholder="Email"
+              formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="Skype"
+              formControlName="skype" required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="Linkedin"
+              formControlName="linkedin" required>
+          </mat-form-field>
+        </div>
+        <!-- Contacts form group -->
+      </p-tabPanel>
+      <!-- Skills form group -->
+      <p-tabPanel header="Skills">
+        <p-chips [(ngModel)]="cv.value.skills" [allowDuplicate]="false"
+          [ngModelOptions]="{standalone: true}">
+        </p-chips>
+      </p-tabPanel>
+      <!-- Skills form group -->
+      <p-tabPanel header="Languages">
+        <!-- Languages form group -->
+        <div formArrayName="languages"
+          *ngFor="let lang of cvLanguages.controls; let i = index;">
+          <div formGroupName="{{i}}" class="grid_container_3">
+            <div>
+              <mat-form-field>
+                <input type="text" matInput placeholder="{{lang.name}}"
+                  formControlName="name" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <input type="number" max="5" min="0" matInput
+                  placeholder="{{lang.proficiency}}"
+                  formControlName="proficiency" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <button color="warn" mat-icon-button aria-label="Delete"
+                (click)="onDeleteLanguage(i)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <p-button label="Add" (click)="onAddLanguage()"></p-button>
+        <!-- Languages form group -->
+
+      </p-tabPanel>
+      <!-- Interests form group -->
+      <p-tabPanel header="Interests">
+        <p-chips [(ngModel)]="cv.value.interests" [allowDuplicate]="false"
+          [ngModelOptions]="{standalone: true}">
+        </p-chips>
+      </p-tabPanel>
+      <!-- Summary form group -->
+      <p-tabPanel header="Summary">
+        <div class="grid_container_2"
+          *ngFor="let summary of cvExperience.controls; let i = index"
+          formArrayName="experience">
+          <div>
+            <textarea [rows]="4" pInputTextarea name="{{i}}"
+              formControlName="{{i}}" required></textarea>
+          </div>
+          <div>
+            <p-button icon="pi pi-times"
+              styleClass="ui-button-rounded ui-button-danger"
+              (click)="onDeleteSummaryExperience(i)"></p-button>
+          </div>
+        </div>
+        <p-button label="Add" (click)="onAddSummaryExperience()"></p-button>
+      </p-tabPanel>
+      <!-- Summary form group -->
+      <!-- Professional form group -->
+      <p-tabPanel header="Professional">
+        <p-button label="+ Working Experience"
+          (click)="onAddProfessionalExperience()">
+        </p-button>
+        <p>&nbsp;</p>
+        <p-tabView orientation="top" styleClass="professional"
+          (onClose)="onDelete($event.index)" [controlClose]="true">
+          <p-tabPanel formArrayName="professional" header="#{{i}}" *ngFor="let pro of
+              cvProfessional.controls; let i = index" [selected]="i == 0"
+            [closable]="true">
+            <div formGroupName="{{i}}" class="animated fadeIn">
+              <mat-form-field>
+                <input type="text" formControlName="position" matInput
+                  placeholder="Position" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input type="text" formControlName="company" matInput
+                  placeholder="Company" required>
+              </mat-form-field>
+              <!-- <p-calendar dataType="string" formControlName="start_date"
+                  [showIcon]="true"></p-calendar> -->
+              <mat-form-field>
+                <input formControlName="start_date" name="start_date" matInput
+                  [matDatepicker]="std" placeholder="Start Date">
+                <mat-datepicker-toggle matSuffix [for]="std">
+                </mat-datepicker-toggle>
+                <mat-datepicker #std [startAt]="date">
+                </mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="end_date" name="end_date" matInput
+                  [matDatepicker]="end" placeholder="End Date">
+                <mat-datepicker-toggle matSuffix [for]="end">
+                </mat-datepicker-toggle>
+                <mat-datepicker #end [startAt]="date"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input type="text" formControlName="direction" matInput
+                  placeholder="Direction" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input type="text" formControlName="project" matInput
+                  placeholder="Project" required>
+              </mat-form-field>
+              <div formArrayName="responsibilities" *ngFor="let resp of pro.get('responsibilities').controls;
+                              let j = index">
+                <div class="grid_container_2">
+                  <mat-form-field>
+                    <input type="text" formControlName="{{j}}" matInput
+                      placeholder="Responsibility" required>
+                  </mat-form-field>
+                  <button color="warn" mat-icon-button aria-label="Delete"
+                    (click)="onDeleteResponsibility(i,j)">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <p-button label="Add Responsibility"
+                (click)="onAddResponsibility(i)">
+              </p-button>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </p-tabPanel>
+      <!-- Professional form group -->
+      <p-tabPanel header="Educational">
+        <div class="education" formArrayName="education">
+          <div *ngFor="let edu of cvEducation.controls; let i = index;"
+            class="education-line" formGroupName={{i}}>
+            <p-fieldset legend="#{{i+1}}">
+              <mat-form-field>
+                <input type="text" matInput placeholder="Name"
+                  formControlName="name" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="edu_start_date" matInput
+                  [matDatepicker]="edu_start_date" placeholder="Start Date">
+                <mat-datepicker-toggle matSuffix [for]="edu_start_date">
+                </mat-datepicker-toggle>
+                <mat-datepicker #edu_start_date>
+                </mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="edu_end_date" matInput
+                  [matDatepicker]="edu_end_date" placeholder="End Date">
+                <mat-datepicker-toggle matSuffix [for]="edu_end_date">
+                </mat-datepicker-toggle>
+                <mat-datepicker #edu_end_date></mat-datepicker>
+              </mat-form-field>
+            </p-fieldset>
+            <button color="warn" mat-icon-button aria-label="Delete"
+              (click)="onDeleteEducation(i)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+          <div class="hr"></div>
+          <p-button label="Add" (click)="onAddEducation()"></p-button>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+    <div style="clear:both;">&nbsp;</div>
+    <div class="buttons">
+      <p-button label="Save"></p-button>
+      &nbsp;&nbsp;
+    </div>
+  </form>
+</div>

@@ -1,0 +1,56 @@
+:host {
+  .hr {
+    width: 100%;
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+    margin: 1rem 0;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .grid_container_3 {
+    display: grid;
+    grid-template-columns: 75% 15% 5%;
+    grid-gap: 5px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .grid_container_2 {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    grid-template-rows: 1min-content;
+    grid-gap: 5px;
+    align-items: center;
+  }
+
+  .delete_pro {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  .languages {
+    display: flex;
+    width: 100%;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .education-line {
+    display: flex;
+    align-items: center;
+    p-fieldset {
+      flex: 1;
+    }
+  }
+}

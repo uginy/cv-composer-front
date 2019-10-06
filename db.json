@@ -1,0 +1,28 @@
+{
+  "uistate": [{ "selectedTab": 0 }],
+  "users": [
+    {
+      "name": "John Doe",
+      "phone": "910928392098",
+      "address": "123 Sun Street",
+      "membership": "Platinum",
+      "id": 1
+    },
+    {
+      "name": "Mary Johnson",
+      "phone": "808937482734",
+      "address": "893 Main Voulevard",
+      "membership": "Pro",
+      "id": 2
+    }
+  ],
+  "rules": [{ "id": 0 }, { "name": "User" }],
+  "formdata": [
+    {
+      "user": 1,
+      "settings": {
+        "setting": true
+      }
+    }
+  ]
+}
