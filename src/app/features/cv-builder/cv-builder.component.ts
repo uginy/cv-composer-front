@@ -3,7 +3,8 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  ViewChild
+  ViewChild,
+  Input
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -25,8 +26,10 @@ import { Observable } from 'rxjs';
 export class CvBuilderComponent implements OnInit {
   cv: FormGroup;
   selectedTab: any;
+  opened: boolean;
   form = false;
   sub: any;
+
   @ViewChild('resume', { static: false }) child: ResumeComponent;
   constructor(private store: Store<AppState>) {}
 

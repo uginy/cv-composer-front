@@ -32,6 +32,7 @@ import { SharedModule } from '@app/shared/_modules';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CvReducer } from './store/reducers';
+import { CvDrawerReducer } from './store/reducers';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent, FooterComponent],
@@ -50,6 +51,7 @@ import { CvReducer } from './store/reducers';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot({
       cv: CvReducer
+      // cv: CvDrawerReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
