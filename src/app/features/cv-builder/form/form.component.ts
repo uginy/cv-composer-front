@@ -227,9 +227,7 @@ export class FormComponent implements OnInit {
     responsibilities.removeAt(id);
   }
 
-  onSubmit(value) {
-    //console.log(value);
-  }
+  onSubmit(value) {}
 
   get diagnostic() {
     return JSON.stringify(this.cv.value);

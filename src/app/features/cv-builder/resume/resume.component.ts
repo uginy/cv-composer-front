@@ -11,7 +11,7 @@ export class ResumeComponent {
   @Input() cv: FormGroup;
 
   captureScreen() {
-    this.pdf.captureScreen();
+    setTimeout(() => this.pdf.captureScreen(), 500);
   }
 
   constructor(private pdf: PdfService) {}

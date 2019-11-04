@@ -15,7 +15,8 @@
   <div class="nav-cv">
     <button pButton label="{{form?'Hide Edit Form':'Show Edit Form'}}"
       (click)="drawer.toggle(); form = !form;"></button>
-    <button pButton label="Export to PDF" (click)="onPdfConvert()"
+    <button pButton label="Export to PDF"
+      (click)="drawer.close(); onPdfConvert()"
       class="ui-button-success"></button>
   </div>
   <mat-drawer-container class="resume-container">
